@@ -1,9 +1,9 @@
 """
 Custom Topology:
 
-    +--------+   +--------+
-    | client |---| server |
-    +--------+   +--------+
+    +--------+   +--------+   +--------+
+    | client |---| router |---| server |
+    +--------+   +--------+   +--------+
 
 """
 
@@ -14,8 +14,10 @@ class MyTopo(Topo):
         # Add hosts
         client = self.addHost('client')
         server = self.addHost('server')
+        router = self.addHost('router')
 
 	# Add Link
-        self.addLink(client, server)
+        self.addLink(client, router)
+        self.addLink(router, server)
 
 topos = {'mytopo': (lambda: MyTopo())}
